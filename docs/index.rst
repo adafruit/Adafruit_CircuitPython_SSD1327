@@ -26,7 +26,7 @@ Table of Contents
 .. toctree::
     :caption: Related Products
 
-    128x128, General 1.5inch OLED display Module <https://www.waveshare.com/1.5inch-oled-module.htm>
+    Waveshare 128x128 1.5inch OLED display Module <https://www.waveshare.com/1.5inch-oled-module.htm>
 
 .. toctree::
     :caption: Other Links
