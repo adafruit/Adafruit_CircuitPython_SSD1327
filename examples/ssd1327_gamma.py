@@ -12,8 +12,9 @@ tft_cs = board.D6
 tft_dc = board.D9
 tft_reset = board.D5
 
-display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset,
-                                 baudrate=1000000)
+display_bus = displayio.FourWire(
+    spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset, baudrate=1000000
+)
 time.sleep(1)
 display = adafruit_ssd1327.SSD1327(display_bus, width=128, height=128)
 
@@ -29,7 +30,7 @@ pixels_per_step = dimension // color_count
 for i in range(dimension):
     if i % pixels_per_step == 0:
         continue
-    gamma_pattern[i,i] = i // pixels_per_step
+    gamma_pattern[i, i] = i // pixels_per_step
 
 for i in range(color_count):
     component = i * 255 // (color_count - 1)
