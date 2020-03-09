@@ -49,12 +49,12 @@ __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_SSD1327.git"
 
 _INIT_SEQUENCE = (
-    b"\xAE\x00"      # DISPLAY_OFF
-    b"\x81\x01\x80" # set contrast control
-    b"\xa0\x01\x53"      # remap memory, odd even columns, com flip and column swap
-    b"\xa1\x01\x00"      # Display start line is 0
-    b"\xa2\x01\x00"      # Display offset is 0
-    b"\xa4\x00"      # Normal display
+    b"\xAE\x00"  # DISPLAY_OFF
+    b"\x81\x01\x80"  # set contrast control
+    b"\xa0\x01\x53"  # remap memory, odd even columns, com flip and column swap
+    b"\xa1\x01\x00"  # Display start line is 0
+    b"\xa2\x01\x00"  # Display offset is 0
+    b"\xa4\x00"  # Normal display
     b"\xa8\x01\x3f"  # Mux ratio is 1/64
     b"\xb1\x01\x11"  # Set phase length
     b"\xb8\x0f\x00\x01\x02\x03\x04\x05\x06\x07\x08\x10\x18\x20\x2f\x38\x3f"  # Set graytable
@@ -71,15 +71,23 @@ _INIT_SEQUENCE = (
 # pylint: disable=too-few-public-methods
 class SSD1327(displayio.Display):
     """SSD1327 driver"""
+
     def __init__(self, bus, **kwargs):
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
             height = kwargs["width"]
-        init_sequence[18] = height - 1 # patch mux ratio
+        init_sequence[18] = height - 1  # patch mux ratio
         print(height)
-        super().__init__(bus, init_sequence, **kwargs, color_depth=4, grayscale=True,
-                         set_column_command=0x15, set_row_command=0x75,
-                         data_as_commands=True,
-                         single_byte_bounds=True)
+        super().__init__(
+            bus,
+            init_sequence,
+            **kwargs,
+            color_depth=4,
+            grayscale=True,
+            set_column_command=0x15,
+            set_row_command=0x75,
+            data_as_commands=True,
+            single_byte_bounds=True,
+        )
