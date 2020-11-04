@@ -1,6 +1,5 @@
 import time
 import board
-import busio
 import displayio
 import adafruit_ssd1327
 
