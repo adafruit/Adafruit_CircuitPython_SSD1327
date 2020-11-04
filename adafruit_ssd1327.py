@@ -79,7 +79,6 @@ class SSD1327(displayio.Display):
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
             height = kwargs["width"]
         init_sequence[18] = height - 1  # patch mux ratio
-        print(height)
         super().__init__(
             bus,
             init_sequence,

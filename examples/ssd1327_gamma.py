@@ -6,15 +6,19 @@ import adafruit_ssd1327
 
 displayio.release_displays()
 
-# This pinout works on a Metro and may need to be altered for other boards.
-spi = busio.SPI(board.SCL, board.SDA)
-tft_cs = board.D6
-tft_dc = board.D9
-tft_reset = board.D5
+# Use for I2C
+i2c = board.I2C()
+display_bus = displayio.I2CDisplay(i2c, device_address=0x3D)
 
-display_bus = displayio.FourWire(
-    spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset, baudrate=1000000
-)
+# Use for SPI
+# spi = board.SPI()
+# oled_cs = board.D5
+# oled_dc = board.D6
+# display_bus = displayio.FourWire(
+#    spi, command=oled_dc, chip_select=oled_cs, baudrate=1000000, reset=board.D9
+# )
+
+
 time.sleep(1)
 display = adafruit_ssd1327.SSD1327(display_bus, width=128, height=128)
 
