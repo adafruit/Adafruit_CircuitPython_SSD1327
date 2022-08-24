@@ -53,9 +53,14 @@ _INIT_SEQUENCE = (
 
 # pylint: disable=too-few-public-methods
 class SSD1327(displayio.Display):
-    """SSD1327 driver"""
+    """SSD1327 driver
+    kwargs:
+    param: height in pixels
+    param: width in pixels
+    param: optional rotation : 0 < rotation < 180 results in 90 degree rotation
+    """
 
-    def __init__(self, bus, **kwargs):
+    def __init__(self, bus: displayio.I2CDisplay, **kwargs) -> None:
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
