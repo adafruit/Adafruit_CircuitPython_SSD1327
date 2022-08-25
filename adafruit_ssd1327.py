@@ -54,10 +54,10 @@ _INIT_SEQUENCE = (
 # pylint: disable=too-few-public-methods
 class SSD1327(displayio.Display):
     """SSD1327 driver
-    kwargs:
-    param: height in pixels
-    param: width in pixels
-    param: optional rotation : 0 < rotation < 180 results in 90 degree rotation
+
+    :param int height: height in pixels
+    :param int width: width in pixels
+    :param int rotation: rotation in degrees 0 < rotation < 180 results in 90 degree rotation
     """
 
     def __init__(self, bus: displayio.I2CDisplay, **kwargs) -> None:
