@@ -54,9 +54,9 @@ _INIT_SEQUENCE = (
 
 # pylint: disable=too-few-public-methods
 class SSD1327(displayio.Display):
-    """SSD1327 driver
+    r"""SSD1327 driver
 
-    :param ~displayio.I2CDisplay bus: I2C bus
+    :param ~displayio.I2CDisplay bus: The data bus the display is on
     :param \**kwargs:
         See below
 
