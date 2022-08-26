@@ -59,7 +59,7 @@ class SSD1327(displayio.Display):
     :param ~displayio.I2CDisplay bus: The data bus the display is on
     :param int height: (keyword-only) The height of the screen
     :param int width: (keyword-only) The width of the screen
-    :param int rotation: (keyword-only) The rotation.orientation of the
+    :param int rotation: (keyword-only) The rotation/orientation of the
         screen, in degrees
     """
 
