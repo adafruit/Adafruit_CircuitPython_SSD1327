@@ -31,7 +31,7 @@ display = adafruit_ssd1327.SSD1327(display_bus, width=WIDTH, height=HEIGHT)
 
 # Make the display context
 splash = displayio.Group()
-display.show(splash)
+display.root_group = splash
 
 # Draw a background rectangle, but not the full display size
 color_bitmap = displayio.Bitmap(
