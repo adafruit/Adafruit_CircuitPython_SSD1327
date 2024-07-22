@@ -5,6 +5,7 @@ import board
 import displayio
 import terminalio
 from adafruit_display_text import label
+
 import adafruit_ssd1327
 
 displayio.release_displays()
@@ -34,20 +35,14 @@ splash = displayio.Group()
 display.root_group = splash
 
 # Draw a background rectangle, but not the full display size
-color_bitmap = displayio.Bitmap(
-    display.width - BORDER * 2, display.height - BORDER * 2, 1
-)
+color_bitmap = displayio.Bitmap(display.width - BORDER * 2, display.height - BORDER * 2, 1)
 color_palette = displayio.Palette(1)
 color_palette[0] = 0xFFFFFF  # White
-bg_sprite = displayio.TileGrid(
-    color_bitmap, pixel_shader=color_palette, x=BORDER, y=BORDER
-)
+bg_sprite = displayio.TileGrid(color_bitmap, pixel_shader=color_palette, x=BORDER, y=BORDER)
 splash.append(bg_sprite)
 
 # Draw a smaller inner rectangle
-inner_bitmap = displayio.Bitmap(
-    display.width - BORDER * 4, display.height - BORDER * 4, 1
-)
+inner_bitmap = displayio.Bitmap(display.width - BORDER * 4, display.height - BORDER * 4, 1)
 inner_palette = displayio.Palette(1)
 inner_palette[0] = 0x888888  # Gray
 inner_sprite = displayio.TileGrid(

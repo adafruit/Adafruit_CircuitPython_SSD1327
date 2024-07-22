@@ -26,13 +26,14 @@ Implementation Notes
 
 """
 
-import displayio
+from busdisplay import BusDisplay
+from i2cdisplaybus import I2CDisplayBus
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_SSD1327.git"
 
 _INIT_SEQUENCE = (
-    b"\xAE\x00"  # DISPLAY_OFF
+    b"\xae\x00"  # DISPLAY_OFF
     b"\x81\x01\x80"  # set contrast control
     b"\xa0\x01\x53"  # remap memory, odd even columns, com flip and column swap
     b"\xa1\x01\x00"  # Display start line is 0
@@ -48,12 +49,12 @@ _INIT_SEQUENCE = (
     b"\xbc\x01\x08"  # Set pre-charge voltage
     b"\xd5\x01\x62"  # function selection B
     b"\xfd\x01\x12"  # command unlock
-    b"\xAF\x00"  # DISPLAY_ON
+    b"\xaf\x00"  # DISPLAY_ON
 )
 
 
 # pylint: disable=too-few-public-methods
-class SSD1327(displayio.Display):
+class SSD1327(BusDisplay):
     """SSD1327 driver
 
     :param ~displayio.I2CDisplay bus: The data bus the display is on
@@ -63,7 +64,7 @@ class SSD1327(displayio.Display):
         screen, in degrees
     """
 
-    def __init__(self, bus: displayio.I2CDisplay, **kwargs) -> None:
+    def __init__(self, bus: I2CDisplayBus, **kwargs) -> None:
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
