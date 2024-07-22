@@ -3,6 +3,7 @@
 
 import board
 import displayio
+import i2cdisplaybus
 import terminalio
 from adafruit_display_text import label
 
@@ -13,7 +14,7 @@ displayio.release_displays()
 # Use for I2C
 i2c = board.I2C()  # uses board.SCL and board.SDA
 # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
-display_bus = displayio.I2CDisplay(i2c, device_address=0x3D)
+display_bus = i2cdisplaybus.I2CDisplayBus(i2c, device_address=0x3D)
 
 # Use for SPI
 # spi = board.SPI()
