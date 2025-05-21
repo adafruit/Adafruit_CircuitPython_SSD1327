@@ -26,7 +26,15 @@ Implementation Notes
 
 """
 
-import displayio
+from busdisplay import BusDisplay
+
+try:
+    from typing import Union
+
+    from fourwire import FourWire
+    from i2cdisplaybus import I2CDisplayBus
+except ImportError:
+    pass
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_SSD1327.git"
@@ -52,17 +60,17 @@ _INIT_SEQUENCE = (
 )
 
 
-class SSD1327(displayio.Display):
+class SSD1327(BusDisplay):
     """SSD1327 driver
 
-    :param ~displayio.I2CDisplay bus: The data bus the display is on
+    :param bus: The data bus the display is on
     :param int height: (keyword-only) The height of the screen
     :param int width: (keyword-only) The width of the screen
     :param int rotation: (keyword-only) The rotation/orientation of the
         screen, in degrees
     """
 
-    def __init__(self, bus: displayio.I2CDisplay, **kwargs) -> None:
+    def __init__(self, bus: Union[FourWire, I2CDisplayBus], **kwargs) -> None:
         # Patch the init sequence for 32 pixel high displays.
         init_sequence = bytearray(_INIT_SEQUENCE)
         height = kwargs["height"]
