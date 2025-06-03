@@ -61,6 +61,7 @@ Usage Example
 
     import board
     import displayio
+    import fourwire
     import adafruit_ssd1327
     import busio
     import time
@@ -73,7 +74,7 @@ Usage Example
     tft_dc = board.D9
     tft_reset = board.D5
 
-    display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset, baudrate=1000000)
+    display_bus = fourwire.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=tft_reset, baudrate=1000000)
     time.sleep(1)
     display = adafruit_ssd1327.SSD1327(display_bus, width=128, height=128)
 
